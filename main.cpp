@@ -1,4 +1,5 @@
-ï»¿#include <iostream>
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
 #include <iomanip>
 #include <windows.h>
 #include <vector>
@@ -10,13 +11,13 @@ using namespace std;
 
 void printHeader() {
     cout << endl;
-    cout << left << setw(12) << "Ð”Ð°Ñ‚Ð°" 
-         << setw(10) << "Ð’Ñ€ÐµÐ¼Ñ" 
-         << setw(10) << "Ð’Ð¸Ð´" 
-         << setw(15) << "Ð¡Ñ‡ÐµÑ‚" 
-         << setw(12) << "Ð¡ÑƒÐ¼Ð¼Ð°" 
-         << "ÐÐ°Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ" << endl;
-    
+    cout << left << setw(12) << "Äàòà"
+        << setw(10) << "Âðåìÿ"
+        << setw(10) << "Âèä"
+        << setw(15) << "Ñ÷åò"
+        << setw(12) << "Ñóììà"
+        << "Íàçíà÷åíèå" << endl;
+
     cout << setfill('-') << setw(80) << "-" << setfill(' ') << endl;
 }
 
@@ -25,15 +26,12 @@ int main() {
     SetConsoleOutputCP(1251);
 
     cout << "================================================" << endl;
-    cout << "Ð—ÐÐ”ÐÐÐ˜Ð•: ÐžÐ‘Ð ÐÐ‘ÐžÐ¢ÐšÐ Ð‘ÐÐÐšÐžÐ’Ð¡ÐšÐ˜Ð¥ ÐžÐŸÐ•Ð ÐÐ¦Ð˜Ð™" << endl;
-    cout << "Ð’Ð°Ñ€Ð¸Ð°Ð½Ñ‚: 7" << endl;
-<<<<<<< HEAD
-    cout << "ÐÐ²Ñ‚Ð¾Ñ€: [Ð¢Ð²Ð¾Ðµ Ð˜Ð¼Ñ] [Ð¢Ð²Ð¾Ñ Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ]" << endl;
-    cout << "Ð“Ñ€ÑƒÐ¿Ð¿Ð°: [Ð¢Ð²Ð¾Ñ Ð“Ñ€ÑƒÐ¿Ð¿Ð°]" << endl;
-=======
-    cout << "ÐÐ²Ñ‚Ð¾Ñ€: [ÐšÐ¾Ñ‡ÐµÑ€Ð³Ð¸Ð½ Ð˜Ð²Ð°Ð½]" << endl;
-    cout << "Ð“Ñ€ÑƒÐ¿Ð¿Ð°: [25ÐŸÐ˜Ð½Ð¶1Ð´]" << endl;
->>>>>>> data
+    cout << "ÇÀÄÀÍÈÅ: ÎÁÐÀÁÎÒÊÀ ÁÀÍÊÎÂÑÊÈÕ ÎÏÅÐÀÖÈÉ" << endl;
+    cout << "Âàðèàíò: 7" << endl;
+
+    cout << "Àâòîð: [Êî÷åðãèí Èâàí]" << endl;
+    cout << "Ãðóïïà: [25ÏÈíæ1ä]" << endl;
+
     cout << "================================================" << endl;
 
     BankOperation* operations[MAX_ROWS];
@@ -41,32 +39,32 @@ int main() {
     int count = readData("data.txt", operations);
 
     if (count == 0) {
-        cout << "Ð¤Ð°Ð¹Ð» Ð¿ÑƒÑÑ‚ Ð¸Ð»Ð¸ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½!" << endl;
+        cout << "Ôàéë ïóñò èëè íå íàéäåí!" << endl;
         return 0;
     }
 
     printHeader();
 
     for (int i = 0; i < count; i++) {
-        cout << left 
-             << setfill('0') << setw(2) << operations[i]->date.day << "." 
-             << setw(2) << operations[i]->date.month << "." 
-             << left << setfill(' ') << setw(6) << operations[i]->date.year
-             
-             << setfill('0') << setw(2) << operations[i]->time.hour << ":" 
-             << setw(2) << operations[i]->time.minute << ":" 
-             << left << setfill(' ') << setw(4) << operations[i]->time.second
-             
-             << setw(10) << operations[i]->type
-             << setw(15) << operations[i]->account
-             << setw(12) << fixed << setprecision(2) << operations[i]->amount 
-             << operations[i]->purpose << endl;
+        cout << left
+            << setfill('0') << setw(2) << operations[i]->date.day << "."
+            << setw(2) << operations[i]->date.month << "."
+            << left << setfill(' ') << setw(6) << operations[i]->date.year
+
+            << setfill('0') << setw(2) << operations[i]->time.hour << ":"
+            << setw(2) << operations[i]->time.minute << ":"
+            << left << setfill(' ') << setw(4) << operations[i]->time.second
+
+            << setw(10) << operations[i]->type
+            << setw(15) << operations[i]->account
+            << setw(12) << fixed << setprecision(2) << operations[i]->amount
+            << operations[i]->purpose << endl;
     }
 
     cout << setfill('-') << setw(80) << "-" << setfill(' ') << endl;
-    cout << "Ð’ÑÐµÐ³Ð¾ Ð·Ð°Ð¿Ð¸ÑÐµÐ¹: " << count << endl;
+    cout << "Âñåãî çàïèñåé: " << count << endl;
 
-    // ÐžÑ‡Ð¸ÑÑ‚ÐºÐ° Ð¿Ð°Ð¼ÑÑ‚Ð¸ (Ð’ÐÐ–ÐÐž Ð´Ð»Ñ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹ Ñ ÑƒÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑÐ¼Ð¸)
+
     for (int i = 0; i < count; i++) {
         delete operations[i];
     }

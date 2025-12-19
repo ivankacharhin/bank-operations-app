@@ -1,23 +1,30 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdio>
+#include <windows.h>
 #include "file_reader.h"
+#include "bank_operation.h"
 
 using namespace std;
 
 int readData(const char* filename, BankOperation* data[]) {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
     ifstream file(filename);
     if (!file.is_open()) {
-        cerr << "ÐžÑˆÐ¸Ð±ÐºÐ°: Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ñ„Ð°Ð¹Ð» " << filename << endl;
+        cerr << "Îøèáêà: íå óäàëîñü îòêðûòü ôàéë " << filename << endl;
         return 0;
     }
 
     int count = 0;
     string dateStr, timeStr;
 
-    while (count < MAX_ROWS && !file.eof()) {
+    while (count < MAX_ROWS) {
         BankOperation* op = new BankOperation();
-        
+
         if (!(file >> dateStr >> timeStr >> op->type >> op->account >> op->amount)) {
             delete op;
             break;
